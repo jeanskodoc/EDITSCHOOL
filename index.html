@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès à la Plateforme EduChat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #2575fc;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: #6a11cb;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .submit-btn:hover {
+            background: #2575fc;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 117, 252, 0.4);
+        }
+        
+        .info-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .info-box p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo i {
+            font-size: 3.5rem;
+            color: #6a11cb;
+            background: #f0f0f0;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        
+        <header>
+            <h1>EduChat</h1>
+            <p>Plateforme de correction d'épreuves</p>
+        </header>
+        
+        <form id="access-form">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+            </div>
+            
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+            </div>
+            
+            <div class="form-group">
+                <label for="statut">Statut</label>
+                <select id="statut" name="statut" required>
+                    <option value="">Sélectionnez votre statut</option>
+                    <option value="eleve">Élève/Étudiant</option>
+                    <option value="enseignant">Enseignant</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-sign-in-alt"></i> Accéder à la plateforme
+            </button>
+        </form>
+        
+        <div class="info-box">
+            <p><i class="fas fa-info-circle"></i> Après validation du formulaire, vous serez redirigé vers notre plateforme de chat pour discuter avec nos enseignants.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('access-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des valeurs du formulaire
+            const nom = document.getElementById('nom').value;
+            const prenom = document.getElementById('prenom').value;
+            const statut = document.getElementById('statut').value;
+            
+            // Stockage des informations (pour une utilisation ultérieure)
+            localStorage.setItem('userNom', nom);
+            localStorage.setItem('userPrenom', prenom);
+            localStorage.setItem('userStatut', statut);
+            
+            // Redirection vers la plateforme de chat principale
+            alert(`Merci ${prenom} ${nom}! Vous allez être redirigé vers la plateforme de chat.`);
+            window.location.href = 'votre-lien-de-chat.html'; // Remplacez par votre lien réel
+        });
+    </script>
+</body>
+</html>
